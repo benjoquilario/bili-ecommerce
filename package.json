@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npx ts-node index.ts",
+    "client": "yarn install && yarn start",
     "dev": "nodemon index.ts",
     "build": "tsc -p ."
   },
