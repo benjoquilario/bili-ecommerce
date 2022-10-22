@@ -27,6 +27,14 @@
     "yarn client": {
       "name": "yarn client",
       "command": "yarn client"
+    },
+    "yarn run client": {
+      "name": "yarn run client",
+      "command": "yarn run client"
+    },
+    "yarn run install-client": {
+      "name": "yarn run install-client",
+      "command": "yarn run install-client"
     }
   }
 }
