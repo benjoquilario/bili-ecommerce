@@ -1,12 +1,12 @@
-import Product from '../components/Product';
-import MessageBox from '../components/MessageBox';
-import LoadingBox from '../components/LoadingBox';
+import Product from "../components/Product";
+import MessageBox from "../components/MessageBox";
+import LoadingBox from "../components/LoadingBox";
 
-import { useGetProductsQuery } from '../services/products';
-import { useDispatch } from 'react-redux';
-import {} from '../store/cart/slice';
+import { useGetProductsQuery } from "../services/products";
+import { useDispatch } from "react-redux";
+import {} from "../store/cart/slice";
 
-const Home = () => {
+const Home = (): JSX.Element => {
   const {
     data: products,
     isLoading,

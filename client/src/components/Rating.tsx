@@ -1,16 +1,19 @@
-import React from 'react';
+type RatingProps = {
+  rating: number;
+  numReviews: number;
+};
 
-const Rating = ({ rating, numReviews }: any) => {
+const Rating = ({ rating, numReviews }: RatingProps) => {
   return (
     <div className="rating">
       <span>
         <i
           className={
             rating >= 1
-              ? 'fa fa-star'
+              ? "fa fa-star"
               : rating >= 0.5
-              ? 'fa fa-star-half-o'
-              : 'fa fa-star-0'
+              ? "fa fa-star-half-o"
+              : "fa fa-star-0"
           }
         ></i>
       </span>
@@ -18,10 +21,10 @@ const Rating = ({ rating, numReviews }: any) => {
         <i
           className={
             rating >= 2
-              ? 'fa fa-star'
+              ? "fa fa-star"
               : rating >= 1.5
-              ? 'fa fa-star-half-o'
-              : 'fa fa-star-0'
+              ? "fa fa-star-half-o"
+              : "fa fa-star-0"
           }
         ></i>
       </span>
@@ -29,10 +32,10 @@ const Rating = ({ rating, numReviews }: any) => {
         <i
           className={
             rating >= 3
-              ? 'fa fa-star'
+              ? "fa fa-star"
               : rating >= 2.5
-              ? 'fa fa-star-half-o'
-              : 'fa fa-star-0'
+              ? "fa fa-star-half-o"
+              : "fa fa-star-0"
           }
         ></i>
       </span>
@@ -40,10 +43,10 @@ const Rating = ({ rating, numReviews }: any) => {
         <i
           className={
             rating >= 4
-              ? 'fa fa-star'
+              ? "fa fa-star"
               : rating >= 3.5
-              ? 'fa fa-star-half-o'
-              : 'fa fa-star-0'
+              ? "fa fa-star-half-o"
+              : "fa fa-star-0"
           }
         ></i>
       </span>
@@ -51,14 +54,14 @@ const Rating = ({ rating, numReviews }: any) => {
         <i
           className={
             rating >= 5
-              ? 'fa fa-star'
+              ? "fa fa-star"
               : rating >= 4.5
-              ? 'fa fa-star-half-o'
-              : 'fa fa-star-0'
+              ? "fa fa-star-half-o"
+              : "fa fa-star-0"
           }
         ></i>
       </span>
-      <span>{numReviews + ' reviews'}</span>
+      <span>{numReviews + " reviews"}</span>
     </div>
   );
 };
