@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export interface IProduct {
   _id: string;
@@ -14,14 +14,16 @@ export interface IProduct {
 }
 
 export const productsApi = createApi({
-  reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000' }),
-  endpoints: builder => ({
+  reducerPath: "api",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://ut0wi0-5000.preview.csb.app",
+  }),
+  endpoints: (builder) => ({
     getProducts: builder.query<IProduct[], void>({
-      query: () => '/api/products',
+      query: () => "/api/products",
     }),
     getProduct: builder.query<IProduct, string>({
-      query: productId => `api/products/${productId}`,
+      query: (productId) => `api/products/${productId}`,
     }),
   }),
 });
