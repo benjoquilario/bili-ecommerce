@@ -1,8 +1,13 @@
-import React from 'react';
-import Rating from './Rating';
-import { Link } from 'react-router-dom';
+import React from "react";
+import Rating from "./Rating";
+import { Link } from "react-router-dom";
+import { IProduct } from "../services/products";
 
-const Product = ({ product }: any) => {
+type ProductProps = {
+  product: IProduct;
+};
+
+const Product = ({ product }: ProductProps) => {
   return (
     <li>
       <div className="product">

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const LoadingBox = () => {
+const LoadingBox = (): JSX.Element => {
   return <div>Loading....</div>;
 };
 

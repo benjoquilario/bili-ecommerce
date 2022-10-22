@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { IProduct, useGetProductQuery } from '../services/products';
-import { cartAddItem } from '../store/cart/slice';
-import { useAppSelector } from '../hooks';
-import { RootState } from '../store/store';
-import Rating from '../components/Rating';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { IProduct, useGetProductQuery } from "../services/products";
+import { cartAddItem } from "../store/cart/slice";
+import { useAppSelector } from "../hooks";
+import { RootState } from "../store/store";
+import Rating from "../components/Rating";
 
-const Products = () => {
-  const id: string = useParams().id || '1';
+const Products = (): JSX.Element => {
+  const id: string = useParams().id || "1";
   const { data: item, isFetching, isSuccess } = useGetProductQuery(id);
   const { cartList, count } = useAppSelector((state: RootState) => state.cart);
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Products = () => {
     const countInStock = item?.countInStock || 0;
 
     if (countInStock < quantity) {
-      window.alert('Sorry product is out of stock');
+      window.alert("Sorry product is out of stock");
       return;
     }
 
@@ -73,16 +73,6 @@ const Products = () => {
                 <li>
                   <div className="row">
                     <div>Qty:</div>
-                    {/* <select
-                      value={quantity}
-                      onChange={e => setQuantity(parseInt(e.target.value))}
-                    >
-                      {[...Array(item.countInStock).keys()].map(x => (
-                        <option key={x + 1} value={x + 1}>
-                          {x + 1}
-                        </option>
-                      ))}
-                    </select> */}
                   </div>
                 </li>
                 {item?.countInStock > 0 && (

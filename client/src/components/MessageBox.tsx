@@ -1,6 +1,10 @@
-import React from 'react';
+import React from "react";
 
-const MessageBox = ({ errorMessage }: any) => {
+type MessageBoxProps = {
+  errorMessage: string;
+};
+
+const MessageBox = ({ errorMessage }: MessageBoxProps): JSX.Element => {
   return <div>{errorMessage}</div>;
 };
 
