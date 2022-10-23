@@ -16,14 +16,14 @@ export interface IProduct {
 export const productsApi = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://ut0wi0-5000.preview.csb.app",
+    baseUrl: "https://qzj52i-5000.preview.csb.app",
   }),
   endpoints: (builder) => ({
     getProducts: builder.query<IProduct[], void>({
-      query: () => "/api/products",
+      query: () => "/products",
     }),
     getProduct: builder.query<IProduct, string>({
-      query: (productId) => `api/products/${productId}`,
+      query: (productId) => `/products/${productId}`,
     }),
   }),
 });
