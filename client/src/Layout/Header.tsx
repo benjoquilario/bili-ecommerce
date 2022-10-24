@@ -18,7 +18,7 @@ const Header = (): JSX.Element => {
           <Link to="/cart">Cart</Link>
           <div>{count}</div>
         </div>
-        <Link to="/signin">Sign In</Link>
+        <Link to="/login">Sign In</Link>
       </div>
     </header>
   );
