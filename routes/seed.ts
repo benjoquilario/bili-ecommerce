@@ -1,12 +1,8 @@
 import express from "express";
-import Product from "../models/product";
-import data from "../data";
+import { getFakeData } from "../controllers/seed";
 
 const seedRouter = express.Router();
 
-seedRouter.get("/", async (req, res) => {
-  const createProduct = await Product.insertMany(data.products);
-  res.send({ createProduct });
-});
+seedRouter.get("/", getFakeData);
 
 export default seedRouter;
