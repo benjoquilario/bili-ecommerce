@@ -2,15 +2,26 @@ import mongoose from "mongoose";
 import { Request, Response } from "express";
 import Product from "../models/product";
 
+/**
+ * Get All product from database
+ * @routes GET /api/products
+ * @access Public
+ */
 export const getProducts = async (req: Request, res: Response) => {
   try {
-    const products = await Product.find().limit(2).sort({ createdAt: -1 });
+    const products = await Product.find().sort({ createdAt: -1 });
     return res.status(200).json(products);
-  } catch (error: any) {
-    return res.status(404).json({ message: error.message });
+  } catch (error) {
+    return res.status(404).json({ message: error });
   }
 };
 
+/**
+ * Get a single product by id
+ * @route GET /api/product/:id
+ * @param id ID of product to fetch
+ * @access Public
+ */
 export const getProduct = async (req: Request, res: Response) => {
   const { id: _id } = req.params;
 
