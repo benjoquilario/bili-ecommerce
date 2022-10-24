@@ -3,7 +3,7 @@ type RatingProps = {
   numReviews: number;
 };
 
-const Rating = ({ rating, numReviews }: RatingProps) => {
+const Rating = ({ rating, numReviews }: RatingProps): JSX.Element => {
   return (
     <div className="rating">
       <span>

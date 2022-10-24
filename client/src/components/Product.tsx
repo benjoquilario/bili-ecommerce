@@ -7,7 +7,7 @@ type ProductProps = {
   product: IProduct;
 };
 
-const Product = ({ product }: ProductProps) => {
+const Product = ({ product }: ProductProps): JSX.Element => {
   return (
     <li>
       <div className="product">
