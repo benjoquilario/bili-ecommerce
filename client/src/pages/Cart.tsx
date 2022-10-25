@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { RootState } from "../store/store";
-import { cartAddItem, removeItem } from "../store/cart/slice";
-import { IProduct } from "../services/products";
+import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { RootState } from '../store/store';
+import { cartAddItem, removeItem } from '../store/cart/slice';
+import { IProduct } from '../services/products';
 
 const Cart = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -10,12 +10,14 @@ const Cart = (): JSX.Element => {
     (state: RootState) => state.cart
   );
 
+  console.log('Hello word!');
+
   return (
     <div>
       <h1>Cart Page</h1>
       {cartList.length === 0 ? (
         <div>
-          <h2>Cart is Empty</h2>
+          <h2>Cart is Emptyasdasda!</h2>
           <Link to="/">Go Shopping</Link>
         </div>
       ) : (

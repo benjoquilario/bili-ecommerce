@@ -6,15 +6,14 @@ import { cartAddItem } from "../store/cart/slice";
 import { useAppSelector } from "../hooks";
 import { RootState } from "../store/store";
 import Rating from "../components/Rating";
+import Loading from "../components/LoadingBox";
 
 const Products = (): JSX.Element => {
   const id: string = useParams().id || "1";
   const { data: item, isFetching, isSuccess } = useGetProductQuery(id);
-  const { cartList, count } = useAppSelector((state: RootState) => state.cart);
+  const cartList = useAppSelector((state: RootState) => state.cart.cartList);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  console.log(item?.countInStock || 0);
 
   const AddCartHandler = () => {
     const existItem = cartList.find((x: IProduct) => x._id === item?._id);
@@ -34,7 +33,7 @@ const Products = (): JSX.Element => {
   return (
     <div>
       <Link to="/">Back to result</Link>
-      {isFetching && <div>Loading...</div>}
+      {isFetching && <Loading />}
       {isSuccess && (
         <div className="row top">
           <div className="col-2">

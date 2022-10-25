@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
-import { Request, Response } from "express";
-import Product from "../models/product";
+import mongoose from 'mongoose';
+import { Request, Response } from 'express';
+import Product from '../models/product';
 
 /**
  * Get All product from database
@@ -33,6 +33,6 @@ export const getProduct = async (req: Request, res: Response) => {
 
     return res.status(200).json(user);
   } catch (error) {
-    return res.status(500).send("Server Error");
+    return res.status(500).send('Server Error');
   }
 };

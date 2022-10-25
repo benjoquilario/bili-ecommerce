@@ -1,11 +1,9 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../hooks";
 import { RootState } from "../store/store";
 
 const Header = (): JSX.Element => {
-  const dispatch = useDispatch();
   const count = useAppSelector((state: RootState) => state.cart.count);
 
   return (

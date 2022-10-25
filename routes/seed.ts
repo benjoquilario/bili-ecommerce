@@ -1,8 +1,8 @@
 import express from "express";
-import { getFakeData } from "../controllers/seed";
+import { seeder } from "../controllers/seed";
 
 const seedRouter = express.Router();
 
-seedRouter.get("/", getFakeData);
+seedRouter.get("/", seeder);
 
 export default seedRouter;

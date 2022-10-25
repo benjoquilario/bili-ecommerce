@@ -17,24 +17,16 @@
     "dev": {
       "name": "dev",
       "command": "yarn dev",
-      "runAtStart": true
+      "runAtStart": false
     },
     "build": {
       "name": "build",
       "command": "yarn build",
       "runAtStart": false
     },
-    "yarn client": {
-      "name": "yarn client",
+    "client": {
+      "name": "client",
       "command": "yarn client"
-    },
-    "yarn run client": {
-      "name": "yarn run client",
-      "command": "yarn run client"
-    },
-    "yarn run install-client": {
-      "name": "yarn run install-client",
-      "command": "yarn run install-client"
     }
   }
 }
