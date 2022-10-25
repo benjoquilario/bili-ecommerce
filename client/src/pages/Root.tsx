@@ -1,6 +1,6 @@
-import { Outlet } from "react-router-dom";
-import Aside from "../Layout/Aside";
-import Header from "../Layout/Header";
+import { Outlet } from 'react-router-dom';
+import Aside from '../Layout/Aside';
+import Header from '../Layout/Header';
 
 const RootLayout = (): JSX.Element => {
   return (

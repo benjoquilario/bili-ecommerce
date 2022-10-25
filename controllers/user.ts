@@ -1,8 +1,8 @@
-import express, { Request as Req, Response as Res } from "express";
-import expressAsyncHandler from "express-async-handler";
-import User from "../models/user";
-import bcrypt from "bcrypt";
-import generateToken from "../utils/generateToken";
+import express, { Request as Req, Response as Res } from 'express';
+import expressAsyncHandler from 'express-async-handler';
+import User from '../models/user';
+import bcrypt from 'bcrypt';
+import generateToken from '../utils/generateToken';
 
 interface IUser {
   user?: {

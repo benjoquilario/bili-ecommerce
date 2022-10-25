@@ -8,7 +8,7 @@ import User from "../models/user";
  * @routes GET /api/seed
  * @access Private
  */
-export const getFakeData = (req: Request, res: Response) => {
+export const seeder = (req: Request, res: Response) => {
   Product.insertMany(data.products);
   User.insertMany(data.users);
 };

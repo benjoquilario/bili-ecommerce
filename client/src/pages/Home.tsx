@@ -3,7 +3,6 @@ import MessageBox from "../components/MessageBox";
 import LoadingBox from "../components/LoadingBox";
 
 import { useGetProductsQuery } from "../services/products";
-import { useDispatch } from "react-redux";
 import {} from "../store/cart/slice";
 
 const Home = (): JSX.Element => {
@@ -14,6 +13,8 @@ const Home = (): JSX.Element => {
     isError,
     error,
   } = useGetProductsQuery();
+
+  console.log(isError && error);
 
   return (
     <div className="content">
