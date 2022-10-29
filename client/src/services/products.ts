@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { apiSlice } from "./api";
 
 export interface IProduct {
   _id: string;
@@ -13,11 +13,7 @@ export interface IProduct {
   quantity: number;
 }
 
-export const productsApi = createApi({
-  reducerPath: "api",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "https://qzj52i-5000.preview.csb.app",
-  }),
+export const extendedApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query<IProduct[], void>({
       query: () => "/products",
@@ -28,4 +24,4 @@ export const productsApi = createApi({
   }),
 });
 
-export const { useGetProductsQuery, useGetProductQuery } = productsApi;
+export const { useGetProductsQuery, useGetProductQuery } = extendedApiSlice;

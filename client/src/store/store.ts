@@ -1,6 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { productsApi } from '../services/products';
-import storage from 'redux-persist/lib/storage';
+import { configureStore } from "@reduxjs/toolkit";
+import { apiSlice } from "../services/api";
+import storage from "redux-persist/lib/storage";
 import {
   persistStore,
   persistReducer,
@@ -10,24 +10,24 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from 'redux-persist';
-import reducer from './reducer';
+} from "redux-persist";
+import reducer from "./reducer";
 
 const persistConfig = {
-  key: 'mern-ecommerce',
+  key: "mern-ecommerce",
   storage,
-  whitelist: ['cart', 'product'],
-  blacklist: [productsApi.reducerPath],
+  whitelist: ["cart", "product", "auth"],
+  blacklist: [apiSlice.reducerPath],
 };
 
 export const store = configureStore({
   reducer: persistReducer(persistConfig, reducer),
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(productsApi.middleware),
+    }).concat(apiSlice.middleware),
 });
 
 export const persistor = persistStore(store);
