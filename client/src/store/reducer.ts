@@ -1,8 +1,10 @@
-import { combineReducers } from '@reduxjs/toolkit';
-import { productsApi } from '../services/products';
-import { cartReducer } from './cart/slice';
+import { combineReducers } from "@reduxjs/toolkit";
+import { apiSlice } from "../services/api";
+import { cartReducer } from "./cart/slice";
+import { authReducer } from "./auth/slice";
 
 export default combineReducers({
-  [productsApi.reducerPath]: productsApi.reducer,
+  [apiSlice.reducerPath]: apiSlice.reducer,
   cart: cartReducer,
+  auth: authReducer,
 });
