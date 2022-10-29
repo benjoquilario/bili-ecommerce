@@ -1,7 +1,7 @@
 import { Request as Req, Response as Res } from "express";
-import User from "../models/user";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import User from "../models/user";
 
 interface IUser {
   user?: {
@@ -26,6 +26,7 @@ export const loginUser = async (req: Request, res: Response) => {
 
   try {
     const existingUser = await User.findOne({ email });
+
     if (!existingUser)
       return res
         .status(500)
@@ -60,15 +61,17 @@ export const loginUser = async (req: Request, res: Response) => {
 };
 
 export const authenticatedUser = async (req: Request, res: Response) => {
-  try {
-    const user = await UserModal.findOne({ _id: req.user._id }).select(
-      "-password"
-    );
+  console.log(req);
+  console.log(res);
+  // try {
+  //   const user = await User.findOne({ _id: req._id }).select(
+  //     "-password"
+  //   );
 
-    if (!user) return;
+  //   if (!user) return;
 
-    res.status(200).json(user);
-  } catch (error) {
-    return res.status(500).json({ message: "Something went wrong!" });
-  }
+  //   res.status(200).json(user);
+  // } catch (error) {
+  //   return res.status(500).json({ message: "Something went wrong!" });
+  // }
 };

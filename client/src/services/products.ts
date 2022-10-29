@@ -1,17 +1,5 @@
 import { apiSlice } from "./api";
-
-export interface IProduct {
-  _id: string;
-  name: string;
-  category: string;
-  image: string;
-  price: number;
-  brand: string;
-  rating: number;
-  numReviews: number;
-  countInStock: number;
-  quantity: number;
-}
+import { IProduct } from "../../store/types";
 
 export const extendedApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

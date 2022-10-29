@@ -7,16 +7,17 @@ import { useAppSelector } from "../hooks";
 import { RootState } from "../store/store";
 import Rating from "../components/Rating";
 import Loading from "../components/LoadingBox";
+import { selectCart } from "../store/cart/selector";
 
 const Products = (): JSX.Element => {
-  const id: string = useParams().id || "1";
+  const id: string = useParams().id || "";
   const { data: item, isFetching, isSuccess } = useGetProductQuery(id);
-  const cartList = useAppSelector((state: RootState) => state.cart.cartList);
+  const items = useAppSelector(selectCart);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const AddCartHandler = () => {
-    const existItem = cartList.find((x: IProduct) => x._id === item?._id);
+    const existItem = items.find((x: IProduct) => x._id === item?._id);
     const quantity: number = existItem ? existItem.quantity + 1 : 1;
 
     const countInStock = item?.countInStock || 0;

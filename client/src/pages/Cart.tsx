@@ -1,21 +1,27 @@
-import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../hooks';
-import { RootState } from '../store/store';
-import { cartAddItem, removeItem } from '../store/cart/slice';
-import { IProduct } from '../services/products';
+import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { RootState } from "../store/store";
+import { cartAddItem, removeItem } from "../store/cart/slice";
+import { IProduct } from "../store/types";
+import {
+  selectCart,
+  selectTotalItems,
+  selectTotalPrice,
+} from "../store/cart/selector";
+import { selectUser } from "../store/auth/selector";
 
 const Cart = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const { cartList, totalPrice, totalItems } = useAppSelector(
-    (state: RootState) => state.cart
-  );
-
-  console.log('Hello word!');
+  const items = useAppSelector(selectCart);
+  const totalItems = useAppSelector(selectTotalItems);
+  const totalPrice = useAppSelector(selectTotalPrice);
+  const user = useAppSelector(selectUser);
+  const { email, name, token, _id } = user.data;
 
   return (
     <div>
       <h1>Cart Page</h1>
-      {cartList.length === 0 ? (
+      {items.length === 0 ? (
         <div>
           <h2>Cart is Emptyasdasda!</h2>
           <Link to="/">Go Shopping</Link>
@@ -23,7 +29,7 @@ const Cart = (): JSX.Element => {
       ) : (
         <>
           <div>
-            {cartList.map((item: IProduct) => (
+            {items.map((item: IProduct) => (
               <div key={item._id}>
                 <p>{item.name}</p>
                 <p>{item.quantity}</p>
