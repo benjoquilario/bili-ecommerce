@@ -1,20 +1,25 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, navigate } from "react-router-dom";
 import { useLoginUserMutation } from "../services/auth";
+import { useDispatch } from "react-redux";
+import { authUser } from "../store/auth/slice";
 
 const Login = () => {
   const { search } = useLocation();
   const redirectUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectUrl ? redirectUrl : "/";
   const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [loginUser, { isLoading }] = useLoginUserMutation();
 
-  const submitHandler = async (event) => {
+  const submitHandler = async (event: any) => {
     event.preventDefault();
 
     try {
-      await loginUser({ email, password });
+      const data = await loginUser({ email, password });
+      dispatch(authUser(data));
+      navigate(redirect || "/");
     } catch (error) {
       console.log(error);
     }
