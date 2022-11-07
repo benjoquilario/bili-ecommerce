@@ -1,31 +1,40 @@
-import { Request as Req, Response as Res, NextFunction } from "express";
-import jwt from "jsonwebtoken";
+import jwt, { Secret } from "jsonwebtoken";
+import { Response, Request, NextFunction } from "../types/express";
+import { IUser } from "../types/express";
 
-interface IUser {
-  user?: {
-    _id: string;
-    name: string;
-    email: string;
-    isAdmin?: boolean;
-  };
-}
+export const isAuth = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  let token;
 
-type Request = Req & IUser;
-type Response = Res & IUser;
+  const secret: Secret = process.env.JWT_SECRET || "benjo";
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
+    try {
+      token = req.headers.authorization.split(" ")[1];
+      const decoded = jwt.verify(token, secret) as IUser;
+      req.user = decoded;
+      next();
+    } catch (err) {
+      console.log(err);
+      throw new Error("Not authorized, token failed");
+    }
 
-export const isAuth = (req: Request, res: Response, next: NextFunction) => {
-  const authorization = req.headers.authorization;
-  if (authorization) {
-    const token = authorization.slice(7, authorization.length); // Bearer XXXXXX
-    jwt.verify(token, "benjo", (err, decode) => {
-      if (err) {
-        res.status(401).send({ message: "Invalid Token" });
-      } else {
-        req.user = decode;
-        next();
-      }
-    });
+    if (!token) {
+      res.status(401);
+      throw new Error("Not authorized");
+    }
+  }
+};
+
+export const isAdmin = (req: Request, res: Response, next: NextFunction) => {
+  if (req.user && req.user.isAdmin) {
+    next();
   } else {
-    res.status(401).send({ message: "No Token" });
+    res.status(401).send({ message: "Invalid Admin Token" });
   }
 };

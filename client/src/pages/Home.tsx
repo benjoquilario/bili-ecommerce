@@ -1,9 +1,8 @@
 import Product from "../components/Product";
 import MessageBox from "../components/MessageBox";
 import LoadingBox from "../components/LoadingBox";
-
-import { useGetProductsQuery } from "../services/products";
 import { useGetAuthUserQuery } from "../services/auth";
+import { useGetProductsQuery } from "../services/products";
 import {} from "../store/cart/slice";
 
 const Home = (): JSX.Element => {

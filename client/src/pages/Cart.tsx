@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { RootState } from "../store/store";
 import { cartAddItem, removeItem } from "../store/cart/slice";
 import { IProduct } from "../store/types";
 import {
@@ -12,11 +11,15 @@ import { selectUser } from "../store/auth/selector";
 
 const Cart = (): JSX.Element => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const items = useAppSelector(selectCart);
   const totalItems = useAppSelector(selectTotalItems);
   const totalPrice = useAppSelector(selectTotalPrice);
   const user = useAppSelector(selectUser);
-  const { email, name, token, _id } = user.data;
+  // const { email, name, token, _id } = user?.data;
+  const checkoutHandler = () => {
+    navigate("/login?redirect=/shipping");
+  };
 
   return (
     <div>
@@ -71,6 +74,13 @@ const Cart = (): JSX.Element => {
                 </li>
               </ul>
             </div>
+            <button
+              type="button"
+              onClick={checkoutHandler}
+              disabled={items.length === 0}
+            >
+              Proceed to Checkout
+            </button>
           </div>
         </>
       )}

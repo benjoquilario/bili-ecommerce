@@ -1,25 +1,14 @@
-import { Request as Req, Response as Res } from "express";
+// import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/user";
-
-interface IUser {
-  user?: {
-    _id: string;
-    name: string;
-    email: string;
-    isAdmin?: boolean;
-  };
-}
-
-type Request = Req & IUser;
-type Response = Res & IUser;
+import { Request, Response } from "../types/express";
 
 /**
- * Authenticate user and get token
- * @routes POST /api/users/login
+ * POST login user
+ * @routes POST /users/login
+ * @access Private
  */
-
 const secret = "benjo";
 export const loginUser = async (req: Request, res: Response) => {
   const { email, password } = req.body as { email: string; password: string };
@@ -41,12 +30,17 @@ export const loginUser = async (req: Request, res: Response) => {
       return res.status(401).json({ password: "Invalid Credentials" });
 
     const token = jwt.sign(
-      { email: existingUser.email, id: existingUser._id },
+      {
+        _id: existingUser._id,
+        email: existingUser.email,
+        name: existingUser.name,
+        isAdmin: existingUser.isAdmin,
+      },
       secret,
       { expiresIn: "30d" }
     );
 
-    return res.send({
+    return res.status(200).json({
       _id: existingUser._id,
       name: existingUser.name,
       email: existingUser.email,
@@ -60,18 +54,14 @@ export const loginUser = async (req: Request, res: Response) => {
   }
 };
 
-export const authenticatedUser = async (req: Request, res: Response) => {
-  console.log(req);
-  console.log(res);
-  // try {
-  //   const user = await User.findOne({ _id: req._id }).select(
-  //     "-password"
-  //   );
+export const authUser = async (req: Request, res: Response) => {
+  try {
+    if (!req.user) return res.json({ message: "Unanthenticated" });
 
-  //   if (!user) return;
+    const user = await User.findOne({ _id: req.user._id }).select("-password");
 
-  //   res.status(200).json(user);
-  // } catch (error) {
-  //   return res.status(500).json({ message: "Something went wrong!" });
-  // }
+    return res.status(200).json(user);
+  } catch (error) {
+    return res.status(500).json({ message: "Something went wrong!" });
+  }
 };

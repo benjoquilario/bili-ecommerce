@@ -1,12 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IProduct } from "../../types";
-import { ICartState } from "./types";
+import { IProduct } from "../types";
+import { ICartState } from "../types";
 
 const initialState: ICartState = {
   count: 0,
   cartList: [],
   totalItems: 0,
   totalPrice: 0,
+  shippingAddress: {
+    fullName: "",
+    address: "",
+    city: "",
+    postalCode: "",
+    country: "",
+    location: "",
+  },
 };
 
 const sumTotal = (item: IProduct[]) =>
@@ -48,8 +56,15 @@ const cartSlice = createSlice({
       state.totalPrice = 0;
       state.totalItems = 0;
     },
+    shipping: (state, action) => {
+      state.shippingAddress = action.payload;
+    },
+    resetShipping: (state) => {
+      state.shippingAddress = initialState.shippingAddress;
+    },
   },
 });
 
-export const { cartAddItem, removeItem } = cartSlice.actions;
+export const { cartAddItem, removeItem, clearCart, shipping, resetShipping } =
+  cartSlice.actions;
 export const cartReducer = cartSlice.reducer;

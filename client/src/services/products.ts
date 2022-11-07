@@ -1,5 +1,5 @@
 import { apiSlice } from "./api";
-import { IProduct } from "../../store/types";
+import { IProduct } from "../store/types";
 
 export const extendedApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

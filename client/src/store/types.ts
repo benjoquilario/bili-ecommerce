@@ -11,9 +11,19 @@ export interface IProduct {
   quantity: number;
 }
 
+export interface IShipping {
+  fullName: string;
+  address: string;
+  city: string;
+  postalCode: string;
+  country: string;
+  location: string;
+}
+
 export interface ICartState {
   count: number;
   cartList: IProduct[];
   totalItems: number;
   totalPrice: number;
+  shippingAddress: IShipping;
 }
