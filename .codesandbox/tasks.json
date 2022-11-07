@@ -27,6 +27,10 @@
     "client": {
       "name": "client",
       "command": "yarn client"
+    },
+    "install-client": {
+      "name": "install-client",
+      "command": "yarn install-client"
     }
   }
 }

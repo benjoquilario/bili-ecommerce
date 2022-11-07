@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { IProduct, useGetProductQuery } from "../services/products";
+import { useGetProductQuery } from "../services/products";
 import { cartAddItem } from "../store/cart/slice";
 import { useAppSelector } from "../hooks";
 import { RootState } from "../store/store";
 import Rating from "../components/Rating";
 import Loading from "../components/LoadingBox";
 import { selectCart } from "../store/cart/selector";
+import { IProduct } from "../store/types";
 
 const Products = (): JSX.Element => {
   const id: string = useParams().id || "";

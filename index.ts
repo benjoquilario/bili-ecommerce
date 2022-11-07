@@ -13,12 +13,15 @@ dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 const MONGO_URI: string = process.env.MONGO_URI as string;
+const origin = "http://localhost:3000" || "";
 
 const app = express();
+app.use(
+  cors({ credentials: true, origin: "https://pr6zuu-3000.preview.csb.app" })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors());
 
 // Routes
 app.use("/api/seed", seedRouter);

@@ -1,5 +1,5 @@
-import { RootState } from "../../store/store";
-import { IProduct } from "../../services/types";
+import { RootState } from "../store";
+import { IProduct } from "../types";
 
 export const selectCart = (state: RootState): IProduct[] => state.cart.cartList;
 export const selectCount = (state: RootState): number => state.cart.count;

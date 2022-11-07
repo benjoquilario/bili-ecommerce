@@ -1,9 +1,9 @@
-import express from 'express';
-
+import express from "express";
+import { getProducts, getProduct } from "../controllers/products";
+import { isAuth } from "../middleware/auth";
 const router = express.Router();
-import { getProducts, getProduct } from '../controllers/products';
 
-router.get('/', getProducts);
-router.get('/:id', getProduct);
+router.get("/", getProducts);
+router.get("/:id", getProduct);
 
 export default router;

@@ -12,7 +12,7 @@ export const authApi = apiSlice.injectEndpoints({
       }),
     }),
     getAuthUser: builder.query({
-      query: () => "/users/login",
+      query: () => "/users/login/user",
     }),
   }),
 });

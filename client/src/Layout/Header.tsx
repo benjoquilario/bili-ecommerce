@@ -1,10 +1,20 @@
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../hooks";
-import { RootState } from "../store/store";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { selectUser } from "../store/auth/selector";
+import { selectCount } from "../store/cart/selector";
+import { logout } from "../store/auth/slice";
+import { clearCart, resetShipping } from "../store/cart/slice";
 
 const Header = (): JSX.Element => {
-  const count = useAppSelector((state: RootState) => state.cart.count);
+  const count = useAppSelector(selectCount);
+  const user = useAppSelector(selectUser);
+  const dispatch = useAppDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    dispatch(resetShipping());
+    dispatch(clearCart());
+  };
 
   return (
     <header className="header">
@@ -16,7 +26,11 @@ const Header = (): JSX.Element => {
           <Link to="/cart">Cart</Link>
           <div>{count}</div>
         </div>
-        <Link to="/login">Sign In</Link>
+        {user ? (
+          <button onClick={logoutHandler}> Logout </button>
+        ) : (
+          <Link to="/login">Sign In</Link>
+        )}
       </div>
     </header>
   );

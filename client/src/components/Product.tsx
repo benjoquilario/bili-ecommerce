@@ -1,7 +1,7 @@
 import React from "react";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
-import { IProduct } from "../services/products";
+import { IProduct } from "../store/types";
 
 type ProductProps = {
   product: IProduct;
