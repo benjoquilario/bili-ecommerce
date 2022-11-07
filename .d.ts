@@ -5,3 +5,5 @@ declare module 'cors';
 declare module 'cookie-parser';
 declare module 'bcrypt';
 declare module 'dotenv';
+declare module 'mongoose-sequence';
+declare module 'mongoose';
