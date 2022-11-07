@@ -9,10 +9,10 @@ interface IUser {
 }
 
 interface IUserState {
-  user?: IUser;
+  user?: IUser | null;
 }
 
-const initialState = {
+const initialState: IUserState = {
   user: null,
 };
 
@@ -20,11 +20,11 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    authUser: (state, action) => {
+    authUser: (state: IUserState, action) => {
       state.user = action.payload?.data;
     },
-    logout: (state) => {
-      state.user = initialState.user;
+    logout: (state: IUserState) => {
+      state.user = null;
     },
   },
 });
